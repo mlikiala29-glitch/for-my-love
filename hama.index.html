@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Theme 💖</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow:hidden;
+            font-family:'Poppins', sans-serif;
+            background:
+                radial-gradient(circle at top, #ffb3d9 0%, #ff5fa2 40%, #ff2e7a 100%);
+            position:relative;
+        }
+
+        /* Floating hearts */
+        .heart{
+            position:absolute;
+            color:white;
+            font-size:20px;
+            animation:float 10s linear infinite;
+            opacity:0.7;
+        }
+
+        @keyframes float{
+            0%{
+                transform:translateY(100vh) scale(0.5);
+                opacity:0;
+            }
+
+            10%{
+                opacity:0.8;
+            }
+
+            100%{
+                transform:translateY(-120vh) scale(1.4);
+                opacity:0;
+            }
+        }
+
+        .container{
+            position:relative;
+            z-index:2;
+            width:90%;
+            max-width:520px;
+            padding:50px 35px;
+            border-radius:35px;
+            text-align:center;
+            background:rgba(255,255,255,0.15);
+            backdrop-filter:blur(18px);
+            border:1px solid rgba(255,255,255,0.3);
+            box-shadow:0 15px 40px rgba(0,0,0,0.25);
+            animation:fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        h1{
+            font-size:42px;
+            color:white;
+            margin-bottom:15px;
+            text-shadow:0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .subtitle{
+            color:#ffe6f1;
+            font-size:18px;
+            margin-bottom:45px;
+        }
+
+        .buttons{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        button{
+            border:none;
+            cursor:pointer;
+            padding:16px 42px;
+            border-radius:18px;
+            font-size:18px;
+            font-weight:600;
+            transition:0.3s;
+            position:relative;
+        }
+
+        #yesBtn{
+            background:white;
+            color:#ff2e7a;
+            box-shadow:0 8px 20px rgba(255,255,255,0.3);
+        }
+
+        #yesBtn:hover{
+            transform:scale(1.08);
+        }
+
+        #noBtn{
+            background:#ff2e7a;
+            color:white;
+            box-shadow:0 8px 20px rgba(0,0,0,0.2);
+            position:relative;
+        }
+
+        #noBtn:hover{
+            transform:scale(1.08);
+        }
+
+        .message{
+            margin-top:35px;
+            color:white;
+            font-size:28px;
+            font-weight:700;
+            display:none;
+            animation:pop 0.6s ease;
+        }
+
+        .message.show{
+            display:block;
+        }
+
+        @keyframes pop{
+            0%{
+                transform:scale(0.5);
+                opacity:0;
+            }
+
+            100%{
+                transform:scale(1);
+                opacity:1;
+            }
+        }
+
+        .big-heart{
+            font-size:70px;
+            animation:heartbeat 1s infinite;
+            margin-bottom:20px;
+        }
+
+        @keyframes heartbeat{
+
+            0%{
+                transform:scale(1);
+            }
+
+            25%{
+                transform:scale(1.15);
+            }
+
+            50%{
+                transform:scale(1);
+            }
+
+            75%{
+                transform:scale(1.15);
+            }
+
+            100%{
+                transform:scale(1);
+            }
+        }
+
+        /* BIG visible hearts animation */
+        @keyframes explodeHeart{
+
+            0%{
+                transform:
+                    translateY(0)
+                    scale(0.5)
+                    rotate(0deg);
+
+                opacity:0;
+            }
+
+            10%{
+                opacity:1;
+            }
+
+            100%{
+                transform:
+                    translateY(-120vh)
+                    translateX(calc(-100px + 200px * var(--random)))
+                    scale(1.8)
+                    rotate(360deg);
+
+                opacity:0;
+            }
+        }
+
+        @media(max-width:480px){
+
+            h1{
+                font-size:32px;
+            }
+
+            .subtitle{
+                font-size:15px;
+            }
+
+            button{
+                font-size:16px;
+                padding:14px 30px;
+            }
+
+            .message{
+                font-size:22px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating hearts -->
+    <div class="heart" style="left:10%; animation-delay:0s;">💖</div>
+    <div class="heart" style="left:25%; animation-delay:2s;">💕</div>
+    <div class="heart" style="left:40%; animation-delay:4s;">💗</div>
+    <div class="heart" style="left:55%; animation-delay:1s;">💘</div>
+    <div class="heart" style="left:70%; animation-delay:3s;">💞</div>
+    <div class="heart" style="left:85%; animation-delay:5s;">❤️</div>
+
+    <div class="container">
+
+        <div class="big-heart">💖</div>
+
+        <h1>Does Mohamed Love baysaaa? 💕</h1>
+
+        <p class="subtitle">
+            There is clearly only one correct answer here.
+        </p>
+
+        <div class="buttons">
+            <button id="yesBtn">Yes 😍</button>
+            <button id="noBtn">No 😢</button>
+        </div>
+
+        <div class="message" id="message"></div>
+
+    </div>
+
+    <script>
+
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const message = document.getElementById('message');
+
+        // Move No button
+        function moveButton(){
+
+            const maxX = 150;
+            const maxY = 120;
+
+            const randomX =
+                Math.floor(Math.random() * maxX * 2) - maxX;
+
+            const randomY =
+                Math.floor(Math.random() * maxY * 2) - maxY;
+
+            noBtn.style.transform =
+                `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        noBtn.addEventListener('mouseover', moveButton);
+
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // YES button
+        yesBtn.addEventListener('click', () => {
+
+            message.innerHTML =
+                "💞 Forever and always together 💞";
+
+            message.classList.add('show');
+
+            document.body.style.background =
+                "linear-gradient(135deg, #ff5fa2, #ff2e7a, #ff0066)";
+
+            createConfetti();
+        });
+
+        // BIG HEART EFFECT
+        function createConfetti(){
+
+            for(let i = 0; i < 80; i++){
+
+                const heart = document.createElement('div');
+
+                const hearts =
+                    ['💖','💘','💕','💗','💞','❤️'];
+
+                heart.innerHTML =
+                    hearts[Math.floor(Math.random() * hearts.length)];
+
+                heart.style.position = 'fixed';
+
+                heart.style.left =
+                    Math.random() * 100 + 'vw';
+
+                heart.style.top = '100vh';
+
+                heart.style.fontSize =
+                    (Math.random() * 40 + 35) + 'px';
+
+                heart.style.opacity = '1';
+
+                heart.style.zIndex = '9999';
+
+                heart.style.pointerEvents = 'none';
+
+                heart.style.filter =
+                    'drop-shadow(0 0 12px rgba(255,255,255,0.9))';
+
+                heart.style.setProperty(
+                    '--random',
+                    Math.random()
+                );
+
+                heart.style.animation =
+                    `explodeHeart ${Math.random() * 2 + 3}s ease-out forwards`;
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
